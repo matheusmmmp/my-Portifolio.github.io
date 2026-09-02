@@ -52,7 +52,7 @@ const Certificates = () => {
           className="mt-4 text-taupe text-[18px] max-w-3xl leading-[30px]"
         >
           A Bachelor&apos;s degree in Computer Science and a postgraduate degree in Data Science, followed by cloud
-          certifications from Google Cloud and AWS. I am currently completing a Master&apos;s in Computer Science,
+          certifications from Google Cloud and AWS. I am currently completing a Master&apos;s in Computer Science at UFSC,
           where my research applies deep learning to time-series forecasting.
         </motion.p>
       </div>

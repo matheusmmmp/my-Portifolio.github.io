@@ -1,7 +1,6 @@
 import {
   frontend,
   machineLearning,
-  backend,
   ux,
   prototyping,
   javascript,
@@ -11,6 +10,8 @@ import {
   reactjs,
   git,
   modallport,
+  facil,
+  cge,
   tableau,
   pandas,
   gcp,
@@ -145,28 +146,16 @@ const experiences = [
   {
     title: 'Mid-level Data Scientist',
     company_name: 'Fácil Espaider',
-    icon: machineLearning,
-    iconBg: '#333333',
+    icon: facil,
+    iconBg: '#004d87',
     date: 'Jul 2024 - Jul 2026',
-    points: [
-      'Built and deployed multiclass classifiers for legal texts with Scikit-learn and TensorFlow/Keras, applied to tens of thousands of records per client.',
-      'Designed NLP pipelines using TF-IDF and n-grams, feature selection with Chi-square and SelectKBest, and class-imbalance handling with class weighting and SMOTE variants.',
-      'Owned the full production lifecycle: artifact versioning, acceptance testing, on-demand deployment and post-deployment monitoring.',
-      'Led client meetings, explaining how the models work and turning their pain points into model requirements.',
-    ],
   },
   {
     title: 'Junior Data Scientist',
-    company_name: 'Controladoria-Geral de Santa Catarina (CGE-SC)',
-    icon: backend,
-    iconBg: '#333333',
+    company_name: 'Controladoria-Geral do Estado de SC',
+    icon: cge,
+    iconBg: '#f4f4f6',
     date: 'Nov 2023 - Aug 2024',
-    points: [
-      'Automated the SIPEF financial reporting pipeline end to end, from PostgreSQL dump collection to consistency checks and publication in the CGE Data Warehouse.',
-      'Added integrity monitoring to that pipeline, with automatic update validation and email alerts to the responsible parties.',
-      'Built ingestion and transformation pipelines over multiple sources with Python, SQL, PostgreSQL and Apache Spark.',
-      'Delivered indicator dashboards in Power BI, Tableau and OBIEE, and integrated them into the institutional portal built with Next.js, React and TypeScript.',
-    ],
   },
   {
     title: 'Data Analyst',
@@ -174,10 +163,6 @@ const experiences = [
     icon: ux,
     iconBg: '#333333',
     date: 'Sep 2023 - Nov 2023',
-    points: [
-      'Statistical analysis for forecasting and customer segmentation.',
-      'Data collection, cleaning and visualization with Python, R, SQL, Excel, Power BI and Tableau.',
-    ],
   },
   {
     title: 'Web Developer',
@@ -185,10 +170,6 @@ const experiences = [
     icon: modallport,
     iconBg: '#333333',
     date: 'Jun 2020 - Sep 2023',
-    points: [
-      'Led a team building port management systems, covering requirements analysis through validation.',
-      'Developed front-end components and prototypes with .NET Framework, ASP.NET Core, C#, MySQL and Azure AD.',
-    ],
   },
 ];
 

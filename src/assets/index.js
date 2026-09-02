@@ -44,6 +44,8 @@ import postgresql from './tech/postgresql.png';
 import rubyrails from './tech/rubyrails.png';
 
 import modallport from './company/modallport.png';
+import facil from './company/facil.png';
+import cge from './company/cge.png';
 import wishbox from './company/wishbox.png';
 import kelhel from './company/kelhel.png';
 import microverse from './company/microverse.png';
@@ -122,6 +124,8 @@ export {
   nyeusi,
   space,
   modallport,
+  facil,
+  cge,
   wishbox,
   kelhel,
   microverse,
