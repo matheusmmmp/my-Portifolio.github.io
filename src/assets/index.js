@@ -46,6 +46,7 @@ import rubyrails from './tech/rubyrails.png';
 import modallport from './company/modallport.png';
 import facil from './company/facil.png';
 import cge from './company/cge.png';
+import capitaltrade from './company/capitaltrade.png';
 import wishbox from './company/wishbox.png';
 import kelhel from './company/kelhel.png';
 import microverse from './company/microverse.png';
@@ -126,6 +127,7 @@ export {
   modallport,
   facil,
   cge,
+  capitaltrade,
   wishbox,
   kelhel,
   microverse,

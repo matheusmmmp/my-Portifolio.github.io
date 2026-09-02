@@ -12,6 +12,7 @@ import {
   modallport,
   facil,
   cge,
+  capitaltrade,
   tableau,
   pandas,
   gcp,
@@ -160,8 +161,8 @@ const experiences = [
   {
     title: 'Data Analyst',
     company_name: 'Capital Trade',
-    icon: ux,
-    iconBg: '#333333',
+    icon: capitaltrade,
+    iconBg: '#ffffff',
     date: 'Sep 2023 - Nov 2023',
   },
   {
