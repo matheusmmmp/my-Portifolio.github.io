@@ -42,7 +42,7 @@ const Certificates = () => {
   return (
     <div className="-mt-[4rem]">
       <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} `}>My Study Jorney</p>
+        <p className={`${styles.sectionSubText} `}>My Study Journey</p>
         <h2 className={`${styles.sectionHeadTextLight}`}>Certificates.</h2>
       </motion.div>
 
@@ -51,11 +51,9 @@ const Certificates = () => {
           variants={fadeIn('', '', 0.1, 1)}
           className="mt-4 text-taupe text-[18px] max-w-3xl leading-[30px]"
         >
-          In my academic career, I achieved a Bachelor's degree in Computer Science and pursued a post-graduate degree in Data Science. 
-          I have remained passionate about technologies and always open to new learning opportunities, 
-          thus venturing into obtaining certifications in emerging technologies like cloud services, Google Cloud, and AWS. 
-          I am constantly eager to study and work on various projects to deepen my knowledge in the field of data 
-          and evolve as a professional.
+          A Bachelor&apos;s degree in Computer Science and a postgraduate degree in Data Science, followed by cloud
+          certifications from Google Cloud and AWS. I am currently completing a Master&apos;s in Computer Science,
+          where my research applies deep learning to time-series forecasting.
         </motion.p>
       </div>
 

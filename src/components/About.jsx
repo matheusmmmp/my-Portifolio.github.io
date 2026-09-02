@@ -37,7 +37,10 @@ const About = () => {
       <motion.p
         variants={fadeIn('', '', 0.1, 1)}
         className="mt-4 text-taupe text-[18px] max-w-3xl leading-[30px]">
-       A Data Scientist with a solid background in Computer Science and practical experience in data analysis projects. I am committed to contributing to the development of data science solutions and providing valuable insights for strategic decision-making.
+        Data Scientist with a background in Computer Science, a postgraduate degree in Data Science and a Master&apos;s degree in progress.
+        For the past two years I have built NLP models that classify legal documents and carried them all the way into production &mdash;
+        owning validation, deployment and monitoring instead of stopping at the notebook. I also build the pipelines and dashboards that
+        feed those decisions, and my Master&apos;s research applies deep learning (LSTM, TCN, Temporal Fusion Transformer) to time-series forecasting.
       </motion.p>
 
       <div className="mt-20 flex flex-wrap gap-10">
