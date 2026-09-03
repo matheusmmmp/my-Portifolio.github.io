@@ -72,7 +72,7 @@ const contacts = [
   {
     title: 'LinkedIn',
     icon: linkedin,
-    url: 'https://www.linkedin.com/in/matheus-de-medeiros-pereira-52b245140/'
+    url: 'https://www.linkedin.com/in/matheus-de-medeiros-pereira-b90295359/'
   },
   {
     title: 'Instagram',
