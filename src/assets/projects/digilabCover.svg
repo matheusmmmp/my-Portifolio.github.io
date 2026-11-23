@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice">
+  <!-- Schematic of the pet's loop: sense, body needs, decide, learn, speak. Not a screenshot. -->
+  <rect width="900" height="600" fill="#1b1b1d"/>
+  <g fill="none" stroke="#5b5b5b" stroke-width="2">
+    <path d="M250 130H360M540 130H650M740 170V250M650 290H540M360 290H250M160 250V170"/>
+    <path d="M450 170V250" stroke-dasharray="6 6"/>
+  </g>
+  <g fill="#232327" stroke="#d4d4d8" stroke-width="1.5">
+    <rect x="70" y="90" width="180" height="80" rx="14"/>
+    <rect x="360" y="90" width="180" height="80" rx="14"/>
+    <rect x="650" y="90" width="180" height="80" rx="14"/>
+    <rect x="650" y="250" width="180" height="80" rx="14"/>
+    <rect x="360" y="250" width="180" height="80" rx="14"/>
+    <rect x="70" y="250" width="180" height="80" rx="14"/>
+  </g>
+  <g font-family="ui-monospace,Consolas,monospace" font-size="18" fill="#d4d4d8" text-anchor="middle">
+    <text x="160" y="136">sense</text>
+    <text x="450" y="136">body needs</text>
+    <text x="740" y="136">decide</text>
+    <text x="740" y="296">act</text>
+    <text x="450" y="296">learn</text>
+    <text x="160" y="296">speak (LLM)</text>
+  </g>
+  <text x="70" y="50" font-family="ui-monospace,Consolas,monospace" font-size="15" fill="#9999a1">modular brain</text>
+</svg>

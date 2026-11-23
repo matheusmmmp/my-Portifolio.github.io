@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice">
+  <!-- Schematic of the walk-forward protocol: four folds, each with a training span and a 180-day test window. Not data. -->
+  <rect width="900" height="600" fill="#1b1b1d"/>
+  <g stroke="#2e2e32" stroke-width="1">
+    <path d="M60 80H840M60 150H840M60 220H840M60 290H840M60 360H840"/>
+    <path d="M150 50V390M300 50V390M450 50V390M600 50V390M750 50V390"/>
+  </g>
+  <g font-family="ui-monospace,Consolas,monospace" font-size="15" fill="#9999a1">
+    <text x="60" y="40">walk-forward validation</text>
+    <text x="60" y="108">fold 1</text>
+    <text x="60" y="178">fold 2</text>
+    <text x="60" y="248">fold 3</text>
+    <text x="60" y="318">fold 4</text>
+  </g>
+  <g>
+    <rect x="150" y="92" width="270" height="24" rx="4" fill="#5b5b5b"/>
+    <rect x="420" y="92" width="100" height="24" rx="4" fill="#d4d4d8"/>
+    <rect x="150" y="162" width="370" height="24" rx="4" fill="#5b5b5b"/>
+    <rect x="520" y="162" width="100" height="24" rx="4" fill="#d4d4d8"/>
+    <rect x="150" y="232" width="470" height="24" rx="4" fill="#5b5b5b"/>
+    <rect x="620" y="232" width="100" height="24" rx="4" fill="#d4d4d8"/>
+    <rect x="150" y="302" width="570" height="24" rx="4" fill="#5b5b5b"/>
+    <rect x="720" y="302" width="100" height="24" rx="4" fill="#d4d4d8"/>
+  </g>
+  <g font-family="ui-monospace,Consolas,monospace" font-size="13" fill="#9999a1">
+    <rect x="150" y="352" width="16" height="12" rx="2" fill="#5b5b5b"/><text x="174" y="363">train</text>
+    <rect x="240" y="352" width="16" height="12" rx="2" fill="#d4d4d8"/><text x="264" y="363">test (180 days)</text>
+  </g>
+</svg>

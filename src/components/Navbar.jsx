@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { styles } from '../styles';
-import { navLinks } from '../constants';
+import { navLinks, profile } from '../constants';
 import { close, menu, logo, logotext } from '../assets';
+import myResume from '../assets/Matheus_de_Medeiros_Pereira_-_Data_Scientist.pdf';
 
 const Navbar = () => {
   const [active, setActive] = useState('');
@@ -10,7 +11,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${styles.paddingX} w-full flex items-center py-2 fixed 
+      className={`${styles.paddingX} w-full flex items-center py-2 fixed
       top-0 z-20 bg-flashWhite sm:opacity-[0.97] xxs:h-[12vh]`}>
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
@@ -21,38 +22,47 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}>
           <img
-            src={logo} // your logo comes here
+            src={logo}
             alt="logo"
             className="sm:w-[50px] sm:h-[50px] w-[45px] h-[45px] object-contain"
           />
-
-          {/* if you have text you want besides your logo it comes here.
-          Otherwise delete this if you don't need it. */}
           <img
             src={logotext}
-            alt="logo"
+            alt="Matheus Pereira"
             className="sm:w-[90px] sm:h-[90px] w-[85px] h-[85px] -ml-[0.6rem] object-contain"
           />
         </Link>
-        <ul className="list-none hidden sm:flex flex-row gap-14 mt-2">
+        <ul className="list-none hidden md:flex flex-row items-center lg:gap-12 gap-7 mt-2">
           {navLinks.map((nav) => (
             <li
               key={nav.id}
               className={`${
-                active === nav.title ? 'text-french' : 'text-eerieBlack'
-              } hover:text-taupe text-[21px] font-medium font-mova 
+                active === nav.title ? 'text-dim' : 'text-eerieBlack'
+              } hover:text-dim lg:text-[21px] text-[18px] font-medium font-mova
                 uppercase tracking-[3px] cursor-pointer nav-links`}
               onClick={() => setActive(nav.title)}>
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
+          <li>
+            <a
+              href={myResume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-jetLight text-timberWolf lg:text-[18px] text-[16px]
+              font-bold font-beckman uppercase tracking-[2px] rounded-[10px]
+              px-4 py-2 hover:bg-battleGray hover:text-eerieBlack
+              transition duration-[0.2s] ease-in-out">
+              {profile.resumeLabel}
+            </a>
+          </li>
         </ul>
 
         {/* mobile */}
-        <div className="sm:hidden flex flex-1 w-screen justify-end items-center">
+        <div className="md:hidden flex flex-1 w-screen justify-end items-center">
           {toggle ? (
             <div
-              className={`p-6 bg-flashWhite opacity-[0.98] absolute 
+              className={`p-6 bg-flashWhite opacity-[0.98] absolute
                 top-0 left-0 w-screen h-[100vh] z-10 menu ${
                   toggle ? 'menu-open' : 'menu-close'
                 }`}>
@@ -64,16 +74,13 @@ const Navbar = () => {
                   onClick={() => setToggle(!toggle)}
                 />
               </div>
-              <ul
-                className="list-none flex flex-col -gap-[1rem] 
-                items-start justify-end mt-[10rem] -ml-[35px]">
+              <ul className="list-none flex flex-col gap-2 items-start justify-end mt-[6rem]">
                 {navLinks.map((nav) => (
                   <li
-                    id={nav.id}
                     key={nav.id}
                     className={`${
-                      active === nav.title ? 'text-french' : 'text-eerieBlack'
-                    } text-[88px] font-bold font-arenq 
+                      active === nav.title ? 'text-dim' : 'text-eerieBlack'
+                    } text-[54px] leading-[1.05] font-bold font-arenq
                       uppercase tracking-[1px] cursor-pointer`}
                     onClick={() => {
                       setToggle(!toggle);
@@ -82,6 +89,13 @@ const Navbar = () => {
                     <a href={`#${nav.id}`}>{nav.title}</a>
                   </li>
                 ))}
+                <li
+                  className="text-[54px] leading-[1.05] font-bold font-arenq
+                  uppercase tracking-[1px] text-eerieBlack">
+                  <a href={myResume} target="_blank" rel="noopener noreferrer">
+                    {profile.resumeLabel}
+                  </a>
+                </li>
               </ul>
             </div>
           ) : (

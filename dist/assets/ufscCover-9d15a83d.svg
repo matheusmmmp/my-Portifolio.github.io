@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 840" preserveAspectRatio="xMidYMid slice">
+  <!-- Typographic placeholder for the MSc card (no official logo available in the project). -->
+  <rect width="600" height="840" fill="#232327"/>
+  <g stroke="#2e2e32" stroke-width="1">
+    <path d="M0 120H600M0 240H600M0 360H600M0 480H600M100 0V560M300 0V560M500 0V560"/>
+  </g>
+  <text x="300" y="300" font-family="Poppins,system-ui,sans-serif" font-size="150" font-weight="800" fill="#d4d4d8" text-anchor="middle" letter-spacing="6">UFSC</text>
+  <text x="300" y="360" font-family="ui-monospace,Consolas,monospace" font-size="22" fill="#9999a1" text-anchor="middle">Federal University of Santa Catarina</text>
+</svg>
