@@ -5,6 +5,14 @@ import { navLinks, profile } from '../constants';
 import { close, menu, logo, logotext } from '../assets';
 import myResume from '../assets/Matheus_de_Medeiros_Pereira_-_Data_Scientist.pdf';
 
+// The big menu font (Arenq) has no accented letters: an "É" falls back to another
+// typeface. The full-screen menu therefore shows the label without accents.
+const withoutAccents = (text) => text.normalize('NFD').replace(/\p{M}/gu, '');
+
+// Scales with the screen so the longest item ("Experience") keeps a margin on
+// narrow phones; 54px from 416px of width up.
+const menuItemText = 'text-[length:clamp(34px,13vw,54px)] leading-[1.05] font-bold font-arenq';
+
 const Navbar = () => {
   const [active, setActive] = useState('');
   const [toggle, setToggle] = useState(false);
@@ -80,7 +88,7 @@ const Navbar = () => {
                     key={nav.id}
                     className={`${
                       active === nav.title ? 'text-dim' : 'text-eerieBlack'
-                    } text-[54px] leading-[1.05] font-bold font-arenq
+                    } ${menuItemText}
                       uppercase tracking-[1px] cursor-pointer`}
                     onClick={() => {
                       setToggle(!toggle);
@@ -90,10 +98,10 @@ const Navbar = () => {
                   </li>
                 ))}
                 <li
-                  className="text-[54px] leading-[1.05] font-bold font-arenq
-                  uppercase tracking-[1px] text-eerieBlack">
+                  className={`${menuItemText}
+                  uppercase tracking-[1px] text-eerieBlack`}>
                   <a href={myResume} target="_blank" rel="noopener noreferrer">
-                    {profile.resumeLabel}
+                    {withoutAccents(profile.resumeLabel)}
                   </a>
                 </li>
               </ul>
