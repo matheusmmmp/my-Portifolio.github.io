@@ -1,26 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { styles } from '../styles';
-import { services } from '../constants';
+import { services, profile } from '../constants';
 import { fadeIn, textVariant } from '../utils/motion';
 import { SectionWrapper } from '../hoc';
 
-const ServiceCard = ({ index, title, icon }) => {
+const ServiceCard = ({ index, title, text, icon }) => {
   return (
     <motion.div
       variants={fadeIn('right', 'spring', 0.5 * index, 0.75)}
       className="xs:w-[250px] w-full card-gradient p-[1px] rounded-[20px] shadow-card">
       <div
-        options={{
-          max: 45,
-          scale: 1,
-          speed: 450,
-        }}
-        className="bg-jetLight rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col">
-        <img src={icon} alt={title} className="w-16 h-16 object-contain" />
-        <h3 className="text-taupe text-[18px] font-bold text-center">
+        className="bg-jetLight rounded-[20px] py-6 px-6 min-h-[280px] flex justify-start
+        items-center flex-col gap-4">
+        <img src={icon} alt="" className="w-14 h-14 object-contain mt-2" />
+        <h3 className="text-timberWolf text-[18px] font-bold text-center">
           {title}
         </h3>
+        <p className="text-french text-[14px] leading-[21px] text-center">
+          {text}
+        </p>
       </div>
     </motion.div>
   );
@@ -36,14 +35,11 @@ const About = () => {
 
       <motion.p
         variants={fadeIn('', '', 0.1, 1)}
-        className="mt-4 text-taupe text-[18px] max-w-3xl leading-[30px]">
-        Data Scientist with a background in Computer Science, a postgraduate degree in Data Science and a Master&apos;s degree in progress.
-        For the past two years I have built NLP models that classify legal documents and carried them all the way into production &mdash;
-        owning validation and deployment. My Master&apos;s research applies deep learning (LSTM, TCN, Temporal Fusion Transformer)
-        to time-series forecasting.
+        className={`mt-4 ${styles.bodyOnLight}`}>
+        {profile.about}
       </motion.p>
 
-      <div className="mt-20 flex flex-wrap gap-10">
+      <div className="mt-16 flex flex-wrap gap-10">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}

@@ -20,16 +20,22 @@ const styles = {
   heroHeadText:
     'font-black text-eerieBlack lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[90px] mt-2',
   heroSubText:
-    'text-eerieBlack font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px]',
+    'text-eerieBlack font-medium lg:text-[26px] sm:text-[22px] xs:text-[19px] text-[17px] lg:leading-[36px]',
 
   sectionHeadText:
     'text-eerieBlack font-black md:text-[60px] sm:text-[48px] xs:text-[40px] text-[30px] font-poppins',
   sectionHeadTextLight:
     'text-timberWolf font-black md:text-[60px] sm:text-[48px] xs:text-[40px] text-[30px] font-poppins',
+  // Section label on light backgrounds: darker gray so it passes contrast.
   sectionSubText:
-    'sm:text-[18px] text-[16px] text-taupe uppercase tracking-wider font-semibold font-poppins',
+    'sm:text-[18px] text-[16px] text-dim uppercase tracking-wider font-semibold font-poppins',
+  // Section label on dark backgrounds.
   sectionSubTextLight:
     'sm:text-[18px] text-[16px] text-taupe uppercase tracking-wider font-semibold font-poppins',
+
+  // Body text on light and on dark backgrounds.
+  bodyOnLight: 'text-onyx text-[18px] max-w-3xl leading-[30px]',
+  bodyOnDark: 'text-french text-[18px] max-w-3xl leading-[30px]',
 };
 
 export { styles };
