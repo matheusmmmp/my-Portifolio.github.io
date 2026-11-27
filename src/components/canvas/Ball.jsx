@@ -1,11 +1,12 @@
-import React, { Suspense, useRef } from 'react';
+import { Suspense, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Decal, useTexture } from '@react-three/drei';
 
 // One ball, drawn over the DOM element that reserves its place in the grid.
 // The logo is applied on the front and on the back, so it stays readable
 // after the ball is dragged around.
-const Ball = ({ imgUrl, index, centers, spins, drag }) => {
+// With still (prefers-reduced-motion) the balls do not float or wobble; dragging still works.
+const Ball = ({ imgUrl, index, centers, spins, drag, still }) => {
   const [decal] = useTexture([imgUrl]);
   const group = useRef(null);
   const size = useThree((state) => state.size);
@@ -19,18 +20,18 @@ const Ball = ({ imgUrl, index, centers, spins, drag }) => {
       spin.x += (0 - spin.x) * 0.08;
       spin.y += (Math.round(spin.y / Math.PI) * Math.PI - spin.y) * 0.08;
     }
-    const t = clock.elapsedTime * 0.6 + index * 1.7;
+    const t = still ? 0 : clock.elapsedTime * 0.6 + index * 1.7;
     // The camera is orthographic, one unit per pixel: the scale is the radius in pixels.
     group.current.scale.setScalar(center.radius);
     group.current.position.set(
       center.x - size.width / 2,
-      size.height / 2 - center.y + Math.sin(t) * 4,
+      size.height / 2 - center.y + (still ? 0 : Math.sin(t) * 4),
       0
     );
     group.current.rotation.set(
-      spin.x + Math.cos(t) / 8,
-      spin.y + Math.sin(t) / 8,
-      Math.sin(t) / 20
+      spin.x + (still ? 0 : Math.cos(t) / 8),
+      spin.y + (still ? 0 : Math.sin(t) / 8),
+      still ? 0 : Math.sin(t) / 20
     );
   });
 
@@ -63,7 +64,7 @@ const Ball = ({ imgUrl, index, centers, spins, drag }) => {
 // with it; `centers` holds each ball's centre and radius in pixels, the centre
 // measured from the grid's top-left corner, `spins` the rotation the visitor gave each ball and `drag`
 // which ball is being dragged, if any.
-const BallsCanvas = ({ icons, centers, spins, drag, active = true }) => {
+const BallsCanvas = ({ icons, centers, spins, drag, active = true, still = false }) => {
   return (
     <Canvas
       orthographic
@@ -81,6 +82,7 @@ const BallsCanvas = ({ icons, centers, spins, drag, active = true }) => {
             centers={centers}
             spins={spins}
             drag={drag}
+            still={still}
           />
         ))}
       </Suspense>

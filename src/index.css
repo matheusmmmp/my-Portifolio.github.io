@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* Poppins only with the weights in use (400–900); the Overcame faces were never used. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,26 +8,59 @@
 @font-face {
   font-family: 'Arenq';
   src: url('./fonts/arenq.otf');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Mova';
   src: url('./fonts/mova.otf');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Beckman';
   src: url('./fonts/beckman.otf');
+  font-display: swap;
 }
 
-@font-face {
-  font-family: 'Overcame Bold';
-  src: url('./fonts/overcame-bold.woff');
+/* Keyboard focus: a light ring with a dark halo, visible on the light and on the dark sections. */
+:focus-visible {
+  outline: 3px solid #f4f4f6;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #1f1f1f;
+}
+main:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
-@font-face {
-  font-family: 'Overcame Outline';
-  src: url('./fonts/overcame-outline.woff');
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -80px;
+  z-index: 50;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: #1f1f1f;
+  color: #f4f4f6;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 16px;
+}
+
+/* Visitors who ask for less motion: no smooth scroll, no CSS animation or transition
+   (framer-motion is handled by <MotionConfig reducedMotion="user"> and the balls by Tech.jsx). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 * {
@@ -226,19 +260,34 @@
    --hero-top é o recuo normal de cada largura; --hero-h é a altura medida do bloco. */
 /* No celular o ícone de rolagem fica no centro, embaixo: 112 px de folga para ele não encostar nos botões. */
 section > .hero-copy { padding-top: 104px; padding-bottom: 112px; }
+/* v8: --hero-h includes the compact row of steps (about 110 px) wherever it is shown. */
 @media (min-width: 640px) {
   section > .hero-copy {
     padding-bottom: 40px;
     --hero-top: 170px;
-    --hero-h: 670px;
+    --hero-h: 780px;
     padding-top: clamp(112px, calc(100vh - var(--hero-h) - 40px), var(--hero-top));
   }
 }
 @media (min-width: 1025px) {
-  section > .hero-copy { --hero-top: 150px; --hero-h: 594px; }
+  section > .hero-copy { --hero-top: 150px; --hero-h: 704px; }
 }
 @media (min-width: 1280px) {
   section > .hero-copy { --hero-top: 190px; }
+}
+@media (min-width: 1280px) and (min-aspect-ratio: 8/5) {
+  section > .hero-copy { --hero-h: 594px; }
+}
+
+/* Compact steps under the buttons, wherever the large block on the dark half is hidden. */
+.hero-steps-compact { display: block; max-width: 560px; }
+/* Room for the scroll icon (bottom: 40px, 64px tall) under the compact steps. */
+@media (min-width: 640px) {
+  section > .hero-copy { padding-bottom: 124px; }
+}
+@media (min-width: 1280px) and (min-aspect-ratio: 8/5) {
+  .hero-steps-compact { display: none; }
+  section > .hero-copy { padding-bottom: 40px; }
 }
 /* Janela baixa: nome menor, para o bloco caber sem rolagem. */
 @media (min-width: 640px) and (max-width: 1024px) and (max-height: 821px) {
@@ -250,6 +299,13 @@ section > .hero-copy { padding-top: 104px; padding-bottom: 112px; }
   section > .hero-copy { --hero-h: 456px; }
   .hero-copy h1 { font-size: 60px; line-height: 66px; }
   .hero-copy h1 span { font-size: 66px; }
+}
+/* v8: same short windows, plus the compact steps where they are shown. */
+@media (min-width: 640px) and (max-width: 1024px) and (max-height: 821px) {
+  section > .hero-copy { --hero-h: 560px; }
+}
+@media (min-width: 1025px) and (max-width: 1279px) and (max-height: 745px) {
+  section > .hero-copy { --hero-h: 566px; }
 }
 
 /* Tablet em pé: com o corte de 60% a parte preta passa por cima do texto.

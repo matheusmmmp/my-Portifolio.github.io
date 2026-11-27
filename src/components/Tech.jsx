@@ -1,12 +1,20 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { BallsCanvas } from './canvas';
 import { SectionWrapper } from '../hoc';
 import { technologies } from '../constants';
+import { useContent } from '../i18n';
 import { styles } from '../styles';
 import { textVariant } from '../utils/motion';
 
+// three.js and the balls live in their own chunk, fetched the first time the
+// section gets near the screen.
+const BallsCanvas = lazy(() => import('./canvas/Ball'));
+
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 const Tech = () => {
+  const { tech } = useContent();
   const icons = useMemo(() => technologies.map((technology) => technology.icon), []);
   const grid = useRef(null);
   const slots = useRef([]); // DOM element that reserves each ball's place
@@ -14,6 +22,8 @@ const Tech = () => {
   const spins = useRef(technologies.map(() => ({ x: 0, y: 0 })));
   const drag = useRef(null);
   const [active, setActive] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const still = useMemo(prefersReducedMotion, []);
 
   // Keep the centres in step with the layout. offsetLeft/offsetTop ignore the
   // section's entrance animation (a transform), which is what we want: the canvas
@@ -32,11 +42,15 @@ const Tech = () => {
     return () => resizeObserver.disconnect();
   }, []);
 
-  // Draw the balls only while the grid is near the screen.
+  // Load the canvas the first time the grid comes near the screen, and draw the
+  // balls only while it stays near.
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => setActive(entry.isIntersecting),
-      { rootMargin: '200px' }
+      ([entry]) => {
+        setActive(entry.isIntersecting);
+        if (entry.isIntersecting) setLoaded(true);
+      },
+      { rootMargin: '400px' }
     );
     observer.observe(grid.current);
     return () => observer.disconnect();
@@ -61,18 +75,21 @@ const Tech = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubTextLight}>My skills</p>
-        <h2 className={styles.sectionHeadTextLight}>Technologies.</h2>
+        <p className={styles.sectionSubTextLight}>{tech.sub}</p>
+        <h2 id="tech-title" className={styles.sectionHeadTextLight}>
+          {tech.title}
+        </h2>
       </motion.div>
 
       <div ref={grid} className="relative mt-10">
-        <div className="flex flex-wrap justify-center sm:gap-x-8 gap-x-3 gap-y-6">
+        <ul className="flex flex-wrap justify-center sm:gap-x-8 gap-x-3 gap-y-6 list-none">
           {technologies.map((technology, index) => (
-            <div className="sm:w-28 w-24 flex flex-col items-center" key={technology.name}>
+            <li className="sm:w-28 w-24 flex flex-col items-center" key={technology.name}>
               <div
                 ref={(element) => {
                   slots.current[index] = element;
                 }}
+                aria-hidden="true"
                 onPointerDown={onPointerDown(index)}
                 onPointerMove={onPointerMove}
                 onPointerUp={onPointerUp}
@@ -82,19 +99,24 @@ const Tech = () => {
               <p className="text-french sm:text-[15px] text-[13px] font-semibold font-poppins tracking-[1px] -mt-1 text-center whitespace-nowrap">
                 {technology.name}
               </p>
-            </div>
+            </li>
           ))}
-        </div>
-        <BallsCanvas
-          icons={icons}
-          centers={centers}
-          spins={spins}
-          drag={drag}
-          active={active}
-        />
+        </ul>
+        {loaded ? (
+          <Suspense fallback={null}>
+            <BallsCanvas
+              icons={icons}
+              centers={centers}
+              spins={spins}
+              drag={drag}
+              active={active}
+              still={still}
+            />
+          </Suspense>
+        ) : null}
       </div>
     </>
   );
 };
 
-export default SectionWrapper(Tech, '');
+export default SectionWrapper(Tech, 'tech');
