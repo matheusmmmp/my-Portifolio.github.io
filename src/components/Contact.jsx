@@ -1,51 +1,50 @@
 import { motion } from 'framer-motion';
 import { styles } from '../styles';
 import { SectionWrapper } from '../hoc';
-import { fadeIn } from '../utils/motion';
-import { contacts } from '../constants';
-import myResume from '../assets/Matheus_de_Medeiros_Pereira_-_Data_Scientist.pdf';
+import { fadeIn, textVariant } from '../utils/motion';
+import { contactIcons, links } from '../constants';
+import { useContent } from '../i18n';
 
-const ContactCard = ({ index, title, icon, url }) => {
-  const handleButtonClick = () => {
-    if (title === 'E-mail') {
-      window.open(`mailto:${url}`);
-    } else if (url === 'resume') {
-      window.open(myResume, '_blank');
-    } else {
-      window.open(url, '_blank');
-    }
-  };
-
-  return (
-    <motion.div
-      variants={fadeIn('right', 'spring', 0.5 * index, 0.75)}
-      className="xs:w-[250px] w-full card-gradient p-[1px] rounded-[20px] shadow-card">
-      <button
-        onClick={handleButtonClick}
-        className="xs:w-[248px] w-full bg-jetLight rounded-[20px] py-5 px-12 xs:min-h-[240px] min-h-[150px] flex justify-evenly items-center flex-col">
-        <img src={icon} alt="" className="w-14 h-14 object-contain" />
-        <h3 className="text-timberWolf text-[18px] font-bold text-center">
-          {title}
-        </h3>
-      </button>
-    </motion.div>
-  );
-};
+// Real links (they used to be buttons calling window.open), so they work with the
+// keyboard, open in a new tab with the middle button and show their address.
+const ContactCard = ({ index, title, icon, href, external, newTab }) => (
+  <motion.li
+    variants={fadeIn('right', 'spring', 0.3 * index, 0.75)}
+    className="xs:w-[250px] w-full card-gradient p-[1px] rounded-[20px] shadow-card list-none">
+    <a
+      href={href}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      className="xs:w-[248px] w-full bg-jetLight rounded-[20px] py-5 px-12 xs:min-h-[240px] min-h-[150px]
+      flex justify-evenly items-center flex-col hover:bg-[#3b3b3b] transition duration-[0.2s]">
+      <img src={icon} alt="" className="w-14 h-14 object-contain" />
+      <span className="text-timberWolf text-[18px] font-bold text-center">{title}</span>
+      {external ? <span className="sr-only">{newTab}</span> : null}
+    </a>
+  </motion.li>
+);
 
 const Contact = () => {
+  const { contact, resumePdf, ui } = useContent();
+  const cards = [
+    { title: contact.cards.email, icon: contactIcons.email, href: `mailto:${links.email}` },
+    { title: contact.cards.linkedin, icon: contactIcons.linkedin, href: links.linkedin, external: true },
+    { title: contact.cards.github, icon: contactIcons.github, href: links.github, external: true },
+    { title: contact.cards.resume, icon: contactIcons.resume, href: resumePdf, external: true },
+  ];
   return (
     <div className="-mt-[6rem]">
-      <p className={styles.sectionSubTextLight}>Get in touch</p>
-      <h2 className={styles.sectionHeadTextLight}>Contact.</h2>
-      <p className={`mt-4 ${styles.bodyOnDark}`}>
-        I am looking for a data scientist role where models have to work in production.
-        The fastest way to reach me is e-mail.
-      </p>
-      <div className="mt-14 flex flex-wrap gap-10">
-        {contacts.map((contact, index) => (
-          <ContactCard key={contact.title} index={index} {...contact} />
+      <motion.div variants={textVariant()}>
+        <p className={styles.sectionSubTextLight}>{contact.sub}</p>
+        <h2 id="contact-title" className={styles.sectionHeadTextLight}>
+          {contact.title}
+        </h2>
+      </motion.div>
+      <p className={`mt-4 ${styles.bodyOnDark}`}>{contact.text}</p>
+      <ul className="mt-14 flex flex-wrap gap-10">
+        {cards.map((card, index) => (
+          <ContactCard key={card.title} index={index} newTab={ui.newTab} {...card} />
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

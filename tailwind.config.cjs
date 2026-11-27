@@ -52,15 +52,13 @@ export default {
         hero: 'linear-gradient(135deg, rgba(244,244,246,0.8) 60%, rgba(10,10,10,0.95) 60%)',
         'hero-mobile':
           'linear-gradient(137deg, rgba(244,244,246,0.8) 75%, rgba(10,10,10,1) 75%)',
-        tech: "linear-gradient(165deg, rgba(20,20,20,0.8) 100%, rgba(109,109,116,0.8) 100%), url('/src/assets/backgrounds/nairobi.jpg')",
-        snowMountain: "linear-gradient(165deg, rgba(20,20,20,0.8) 100%, rgba(109,109,116,0.8) 100%), url('/src/assets/backgrounds/snowMountain.jpg')",
+        tech: "linear-gradient(165deg, rgba(20,20,20,0.8) 100%, rgba(109,109,116,0.8) 100%), url('/src/assets/backgrounds/nairobi.webp')",
+        snowMountain: "linear-gradient(165deg, rgba(20,20,20,0.8) 100%, rgba(109,109,116,0.8) 100%), url('/src/assets/backgrounds/snowMountain.webp')",
       },
       fontFamily: {
         arenq: ['Arenq'],
         beckman: ['Beckman'],
         mova: ['Mova'],
-        overcameBold: ['Overcame Bold'],
-        overcameOutline: ['Overcame Outline'],
         poppins: ['Poppins', 'sans-serif'],
       },
     },
